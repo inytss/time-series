@@ -85,21 +85,21 @@ Now let's explore another method to forecast our `train_theft` data using ARIMA 
 
 ## Modeling Quiz
 
-ARIMA is a statistical model to forecasting time series object and an acronym that stands for AR(autoregressive) I (integrated) MA (moving average).
+ARIMA is a statistical model to forecast time series object. It stands for AR(autoregressive) I (integrated) MA (moving average).
 
 5. Based on the explanation above which of this following statement is TRUE about ARIMA(p,d,q)?
  - [ ] the time series object is being differenced q times to make it stationary
- - [ ] p is the number of ordos you can use to determine the process of making an autoregressive model
+ - [ ] p is the number of order you can use to determine the process of making an autoregressive model
  - [ ] d shows the number of time in 1 frequency
- - [ ] p shows how much data is needed for smoothing error with Moving Average
+ - [ ] p shows how much data is needed for smoothing error using Moving Average
 
 # Forecasting
 
-In the section before, we have made a forecasting model using Holt-Winters and ARIMA. Using `model_hw` and `model_arima` model we have made before, try forecast the theft frequency for the following 365 days using `forecast()` function. Store the result of `model_hw` in `hw_forecast` and `model_arima` in `arima_forecast`.
+In the section before, we have built a forecasting model using Holt-Winters and ARIMA. Using `model_hw` and `model_arima` model, try forecast the theft frequency for the following 365 days using `forecast()` function. Store the result of `model_hw` in `hw_forecast` and `model_arima` in `arima_forecast`.
 
 # Model Evaluation (Erorr)
 
-Now we have the forecasting result of the Holt-Winters model and ARIMA model. To evaluate our forecast result, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please find each MAPE value from both model using `MAPE()` function from `MLmetrics` package.
+Now we have the forecast result of the Holt-Winters model and ARIMA model. To evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please find each MAPE value from both model using `MAPE()` function from `MLmetrics` package.
 
 ```
 # your code here
@@ -119,13 +119,13 @@ There are some assumptions we apply when we use time series analysis. These assu
 ## Assumption Checking Quiz
 
 7. To make sure that our forecasting model is reliable enough, what assumption should be checked in time series analysis?
- - [ ] Multicolinearity, Autocorrelation
+ - [ ] Multicollinearity, Autocorrelation
  - [ ] Autocorrelation, Normality
  - [ ] Linearity, Autocorrelation
  - [ ] Heteroscedasticity, Autocorrelation
 
 8. Which of this following statement below is TRUE based on autocorrelation assumption in time series object?
- - [ ] there are no autocorrelation in error so each error does not has relation
- - [ ] there are autocorrelation in error, so each error has relation
- - [ ] there are autocorrelation of each prediction data, so each predicted data has relation
- - [ ] there are no autocorrelation in each prediction data, so each predicted data has no relation
+ - [ ] there are no autocorrelation in error, means each error does not has relation
+ - [ ] there are autocorrelation in error, means each error has relation
+ - [ ] there are autocorrelation of each prediction data, means each predicted data has relation
+ - [ ] there are no autocorrelation in each prediction data, means each predicted data has no relation
