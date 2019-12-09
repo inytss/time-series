@@ -1,3 +1,7 @@
+Congratulations! This is the end of Time Series and Forecasting unit. The last part of this course is closed by filling this quiz.
+
+To complete this assignment, you need to build your time series model by following these steps:
+
 # 1 Data Exploration
 
 In this quiz, you will be using the Chicago Crime dataset. The Crime dataset is originally a real-time historical data of various crime types in the city of Chicago. The dataset was downloaded from [Chicago Data Portal](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2) and has been filtered for the primary type of crime "THEFT". The data is stored as a csv file in this repository as `theft-ts.csv`.
@@ -15,7 +19,7 @@ The `theft` data consists of 6.492 observations and  2 variables. `theft` datase
 
 As a data sciencetist you will develop a forecasting modeling that aid security or endurance parties in making decision. Aim of making this forecasting model is to anticipate if there is a crime happened and allocate security parties in many city of Chicago. Based on our data, we want to predict the number of theft incident based on `Amount_Theft` by `Date` column.
 
-Before we make a forecasting model, let inspect our data first. Is our data is a time series object or not? If it's not please make a time series object using the `theft` data using `ts()` function with frequency of this period is 365 and store it under `theft_ts`. From `theft_ts` subset it which contain the first 10 years using `head()` and visualize it with `autoplot()` and answer the first question.
+Before we make a forecasting model, let inspect our data first. Is our data is a time series object or not? If it's not please make a time series object using the `theft` data using `ts()` function with frequency of this period is 365 and store it under `theft_ts`. To know what type of time series object in `theft_ts` data, subset it which contain the first 10 years using `head()` and visualize it with `autoplot()` and answer the first question. Remember, when you subset it, please do not store it into object, just visualize it.
 
 ```
 # your code here
@@ -99,7 +103,7 @@ In the section before, we have built a forecasting model using Holt-Winters and 
 
 # Model Evaluation (Erorr)
 
-Now we have the forecast result of the Holt-Winters model and ARIMA model. To evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please find each MAPE value from both model using `MAPE()` function from `MLmetrics` package.
+Now we have the forecast result of the Holt-Winters model and ARIMA model. To evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please find each MAPE value from both model using `accuracy()` function from `forecast` package and see the MAPE value.
 
 ```
 # your code here
@@ -119,12 +123,12 @@ There are some assumptions we apply when we use time series analysis. These assu
 ## Assumption Checking Quiz
 
 7. To make sure that our forecasting model is reliable enough, what assumption should be checked in time series analysis?
- - [ ] Multicollinearity, Autocorrelation
- - [ ] Autocorrelation, Normality
- - [ ] Linearity, Autocorrelation
- - [ ] Heteroscedasticity, Autocorrelation
+ - [ ] Multicollinearity, No-Autocorrelation
+ - [ ] No-Autocorrelation, Normality
+ - [ ] Linearity, No-Autocorrelation
+ - [ ] Heteroscedasticity, No-Autocorrelation
 
-8. Which of this following statement below is TRUE based on autocorrelation assumption in time series object?
+8. Which of this following statement below is TRUE based on no-autocorrelation assumption in time series object?
  - [ ] there are no autocorrelation in error, means each error does not has relation
  - [ ] there are autocorrelation in error, means each error has relation
  - [ ] there are autocorrelation of each prediction data, means each predicted data has relation
