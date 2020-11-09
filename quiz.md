@@ -27,10 +27,10 @@ Before we make a forecasting model, let inspect our data first. Is our data is a
 
 ## Data Exploration Quiz
 
-1. Which is the statement below is true based on the time series plot above?
- - [ ] `theft_ts` is additive because the seasonality pattern is rather constant across the observed period
- - [ ] `theft_ts` is multiplicative because as the trend increase, the amplitude of seasonal activity is also increases
- - [ ] there is no seasonal pattern in `theft_ts`
+1. Which is the statement below is **TRUE** based on the time series?
+ - [ ] Additive time series is additive because the seasonality pattern is rather increase across the observed period
+ - [ ] Multiplicative time series is multiplicative because as the trend increase, the amplitude of seasonal activity is also increases
+ - [ ] Time series has not trend, seasonality, and error pattern
 
 # Decompose
 
@@ -75,7 +75,7 @@ After we analyze the decomposition result of `train_theft`, we are ready to buil
 
 ## Modeling Quiz
 
-4. If your answer is yes using Holt-Winters as a model, which is the most appropriate code to model the `theft_ts` data?
+4. If your answer is yes using Holt-Winters as a model, which is the most appropriate code to model the `train_theft` data?
  - [ ] HoltWinters(train, gamma = F)
  - [ ] HoltWinters(train)
  - [ ] HoltWinters(train, beta = F)
@@ -91,7 +91,7 @@ Now let's explore another method to forecast our `train_theft` data using ARIMA 
 
 ARIMA is a statistical model to forecast time series object. It stands for AR(autoregressive) I (integrated) MA (moving average).
 
-5. Based on the explanation above which of this following statement is TRUE about ARIMA(p,d,q)?
+5. Based on the explanation above which of this following statement is **TRUE** about ARIMA(p,d,q)?
  - [ ] the time series object is being differenced q times to make it stationary
  - [ ] p is the number of order you can use to determine the process of making an autoregressive model
  - [ ] d shows the number of time in 1 frequency
@@ -101,9 +101,9 @@ ARIMA is a statistical model to forecast time series object. It stands for AR(au
 
 In the section before, we have built a forecasting model using Holt-Winters and ARIMA. Using `model_hw` and `model_arima` model, try forecast the theft frequency for the following 365 days using `forecast()` function. Store the result of `model_hw` in `hw_forecast` and `model_arima` in `arima_forecast`.
 
-# Model Evaluation (Erorr)
+# Model Evaluation (Error)
 
-Now we have the forecast result of the Holt-Winters model and ARIMA model. To evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please find each MAPE value from both model using `accuracy()` function from `forecast` package and see the MAPE value.
+Now we have the forecast result of the Holt-Winters and ARIMA model. To evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please find each MAPE value from both model using `accuracy()` function from `forecast` package and see the MAPE value.
 
 ```
 # your code here
@@ -111,12 +111,12 @@ Now we have the forecast result of the Holt-Winters model and ARIMA model. To ev
 
 ## Model Evaluation Quiz
 
-6. Based on the error result we have got, which of this following statement about model evaluation using error measure is TRUE?
+6. Based on the error result we have got, which of this following statement about model evaluation using error measure is **TRUE**?
  - [ ] using ARIMA model, the mean absolute of percentage error for each forecasting result is 11.6%
  - [ ] using Holt-Winters model, the mean absolute of percentage error for each forecasting result is around 11.6 theft event
  - [ ] the mean absolute of percentage error difference between ARIMA and Holt-Winters model by 1.1%
 
-# Model evaluation (Assumtion Checking)
+# Model Evaluation (Assumtion Checking)
 
 There are some assumptions we apply when we use time series analysis. These assumptions are used to make our model reliable enough to predict our real data.
 
@@ -128,7 +128,7 @@ There are some assumptions we apply when we use time series analysis. These assu
  - [ ] Linearity, No-Autocorrelation
  - [ ] Heteroscedasticity, No-Autocorrelation
 
-8. Which of this following statement below is TRUE based on no-autocorrelation assumption in time series object?
+8. Which of this following statement below is **TRUE** based on no-autocorrelation assumption of our time series model?
  - [ ] there are no autocorrelation in error, means each error does not has relation
  - [ ] there are autocorrelation in error, means each error has relation
  - [ ] there are autocorrelation of each prediction data, means each predicted data has relation

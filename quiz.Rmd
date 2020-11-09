@@ -1,12 +1,23 @@
 ---
-title: "Time Series and Forecasting"
+title: "Time Series and Forecasting Quiz"
 author: "Team Algoritma"
-date: "3/11/2020"
-output: html_document
+date: "`r format = Sys.Date('%e, %B %Y')`"
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+    theme: united
+    highlight: zenburn
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE,
+                      mmessage = FALSE,
+                      warning = FALSE,
+                      fig.align = 'center',
+                      comment = '#>')
 ```
 
 # Time Series and Forecasting Quiz
@@ -24,7 +35,7 @@ Please load and investigate the data given `theft-ts.csv` and assign it to `thef
 
 ```
 
-The `theft` data consists of 6,492 observations and  2 variables. The description of each feature is explained below:
+The `theft` data consists of 6,492 observations and 2 variables. The description of each feature is explained below:
 
 * `Date` : Date when the incident occurred.
 * `Amount_Theft` : The total amount of theft on each date.
@@ -40,9 +51,9 @@ Before we make a forecasting model, let us first inspect our data. Is our data a
 
 ___
 1. Which statement below is **TRUE** based on the time series plot above?
- - [ ] `theft_ts` is additive because the seasonality pattern is rather constant across the observed period
- - [ ] `theft_ts` is multiplicative because as the trend increases, the amplitude of seasonal activity is also increases
- - [ ] there is no seasonal pattern in `theft_ts`
+ - [ ] Additive time series is additive because the seasonality pattern is rather increase across the observed period
+ - [ ] Multiplicative time series is multiplicative because as the trend increase, the amplitude of seasonal activity is also increases
+ - [ ] Time series has not trend, seasonality, and error pattern.
 ___
 
 # Decompose
@@ -93,8 +104,9 @@ After we analyze the decomposition result of `train_theft`, we are ready to buil
 # your code here
 
 ```
+
 ___
-4. If your answer is yes, using Holt-Winters as a model, which is the most appropriate code to model the `theft_ts` data?
+4. If your answer is yes, using Holt-Winters as a model, which is the most appropriate code to model the `train_theft` data?
  - [ ] HoltWinters(train, gamma = F)
  - [ ] HoltWinters(train)
  - [ ] HoltWinters(train, beta = F)
@@ -118,15 +130,14 @@ ___
 
 # Forecasting
 
-On the previous section, we have built a forecasting model using Holt-Winters and ARIMA. Using `model_hw` and `model_arima` model, try forecasting the theft frequency for the following 365 days using `forecast()` function. Store the result from `model_hw` in `hw_forecast` and `model_arima` in `arima_forecast`.
+In the section before, we have built a forecasting model using Holt-Winters and ARIMA. Using `model_hw` and `model_arima` model, try forecast the theft frequency for the following 365 days using `forecast()` function. Store the result of `model_hw` in `hw_forecast` and `model_arima` in `arima_forecast`.
 
-# Model Evaluation (Erorr)
+# Model Evaluation (Error)
 
-Now that we have the forecasting results from the Holt-Winters model and ARIMA model. We can now evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please evaluate both models with MAPE using `accuracy()` function and from the `forecast` package.
+Now we have the forecast result of the Holt-Winters and ARIMA model. To evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please find each MAPE value from both model using `accuracy()` function from `forecast` package and see the MAPE value.
 
 ```{r}
 # your code here
-
 
 ```
 
@@ -137,7 +148,7 @@ ___
  - [ ] The difference of mean absolute percentage error between ARIMA and Holt-Winters model is 1.1%
 ___
 
-# Model evaluation (Assumption Checking)
+# Model Evaluation (Assumption Checking)
 
 There are some assumptions when we use the time series analysis. These assumptions are used to make our model reliable to predict the real data.
 
@@ -155,8 +166,9 @@ Please check the assumption of no-autocorrelation from your models using Ljung-B
 # your code here
 
 ```
+
 ___
-8. Which of the following statement is **TRUE** about the no-autocorrelation assumption of the time series model?
+8. Which of the following statement is **TRUE** about the no-autocorrelation assumption of our time series model?
  - [ ] there is no autocorrelation in error, means each error does not have any relation
  - [ ] there is autocorrelation in error, means each error have relation
  - [ ] there is autocorrelation of each prediction data, means each predicted data have relation
