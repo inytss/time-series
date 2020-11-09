@@ -169,8 +169,8 @@ Silahkan periksa asumsi *no-autocorrelation* pada model Anda menggunakan tes *Lj
 
 ___
 8. Manakah dari pernyataan dibawah ini yang **BENAR** mengenai asumsi *no-autocorrelation* pada model *time series* kita?
-- [ ] tidak terdapat *autocorrelation* pada *error*, artinya setiap *error* tidak memiliki hubungan
-- [ ] terdapat *autocorrelation* pada *error*, artinya setiap *error* memiliki hubungan
-- [ ] terdapat *autocorrelation* pada setiap data prediksi, artinya setiap data yang diprediksi memiliki hubungan
-- [ ] tidak terdapat *autocorrelation* pada setiap data prediksi, artinya setiap data yang diprediksi tidak memiliki hubungan
+  - [ ] tidak terdapat *autocorrelation* pada *error*, artinya setiap *error* tidak memiliki hubungan
+  - [ ] terdapat *autocorrelation* pada *error*, artinya setiap *error* memiliki hubungan
+  - [ ] terdapat *autocorrelation* pada setiap data prediksi, artinya setiap data yang diprediksi memiliki hubungan
+  - [ ] tidak terdapat *autocorrelation* pada setiap data prediksi, artinya setiap data yang diprediksi tidak memiliki hubungan
 ___
