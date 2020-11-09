@@ -25,21 +25,14 @@ Before we make a forecasting model, let us first inspect our data. Is our data a
 # your code here
 ```
 
-<<<<<<< HEAD
 ## Data Exploration Quiz
 
+___
 1. Which is the statement below is **TRUE** based on the time series?
  - [ ] Additive time series is additive because the seasonality pattern is rather increase across the observed period
  - [ ] Multiplicative time series is multiplicative because as the trend increase, the amplitude of seasonal activity is also increases
  - [ ] Time series has not trend, seasonality, and error pattern
-=======
 ___
-1. Which statement below is **TRUE** based on the time series plot above?
- - [ ] `theft_ts` is additive because the seasonality pattern is rather constant across the observed period
- - [ ] `theft_ts` is multiplicative because as the trend increases, the amplitude of seasonal activity is also increases
- - [ ] there is no seasonal pattern in `theft_ts`
-___
->>>>>>> 733dcc0193d36cf1855d54ce854eda59384b969a
 
 # Decompose
 
@@ -49,7 +42,6 @@ After we make the time series object for our `theft` data, we inspect our time s
 # your code here
 ```
 ___
-
 2. Based on the decompose plot, how is the trend pattern of `theft_ts`?
  - [ ] there's no trend
  - [ ] the trend is increasing
@@ -85,15 +77,12 @@ After we analyze the decomposition result of `train_theft`, we are ready to buil
 ```
 # your code here
 ```
-<<<<<<< HEAD
+
 
 ## Modeling Quiz
 
-4. If your answer is yes using Holt-Winters as a model, which is the most appropriate code to model the `train_theft` data?
-=======
 ___
-4. If your answer is yes, using Holt-Winters as a model, which is the most appropriate code to model the `theft_ts` data?
->>>>>>> 733dcc0193d36cf1855d54ce854eda59384b969a
+4. If your answer is yes using Holt-Winters as a model, which is the most appropriate code to model the `train_theft` data?
  - [ ] HoltWinters(train, gamma = F)
  - [ ] HoltWinters(train)
  - [ ] HoltWinters(train, beta = F)
@@ -106,17 +95,12 @@ Let's explore another method to forecast our `train_theft` data using the ARIMA 
 # your code here
 ```
 
-<<<<<<< HEAD
 ## Modeling Quiz
 
 ARIMA is a statistical model to forecast time series object. It stands for AR(autoregressive) I (integrated) MA (moving average).
 
-5. Based on the explanation above which of this following statement is **TRUE** about ARIMA(p,d,q)?
-=======
-ARIMA is a statistical model to forecast a time series object. It stands for AR(autoregressive)-I(integrated)-MA(moving average).
 ___
-5. Based on the explanation above, which of the following statement is **TRUE** about ARIMA(p,d,q)?
->>>>>>> 733dcc0193d36cf1855d54ce854eda59384b969a
+5. Based on the explanation above which of this following statement is **TRUE** about ARIMA(p,d,q)?
  - [ ] the time series object is being differenced q times to make it stationary
  - [ ] p is the number of orders you can use to determine the process of making an autoregressive model
  - [ ] d shows the number of time in 1 frequency
@@ -129,35 +113,22 @@ On the previous section, we have built a forecasting model using Holt-Winters an
 
 # Model Evaluation (Error)
 
-<<<<<<< HEAD
 Now we have the forecast result of the Holt-Winters and ARIMA model. To evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please find each MAPE value from both model using `accuracy()` function from `forecast` package and see the MAPE value.
-=======
-Now that we have the forecasting results from the Holt-Winters model and ARIMA model. We can now evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please evaluate both models with MAPE using `accuracy()` function and from the `forecast` package.
->>>>>>> 733dcc0193d36cf1855d54ce854eda59384b969a
 
 ```
 # your code here
 ```
 
-<<<<<<< HEAD
 ## Model Evaluation Quiz
 
+___
 6. Based on the error result we have got, which of this following statement about model evaluation using error measure is **TRUE**?
  - [ ] using ARIMA model, the mean absolute of percentage error for each forecasting result is 11.6%
  - [ ] using Holt-Winters model, the mean absolute of percentage error for each forecasting result is around 11.6 theft event
  - [ ] the mean absolute of percentage error difference between ARIMA and Holt-Winters model by 1.1%
+___
 
 # Model Evaluation (Assumtion Checking)
-=======
-___
-6. Based on the result, which of the following statements **TRUE**?
- - [ ] The mean absolute percentage error for the ARIMA model is 11.6%
- - [ ] The mean absolute percentage error for the Holt-Winters model around 11.6 theft event
- - [ ] The difference of mean absolute percentage error between ARIMA and Holt-Winters model is 1.1%
-___
-
-# Model evaluation (Assumption Checking)
->>>>>>> 733dcc0193d36cf1855d54ce854eda59384b969a
 
 There are some assumptions when we use the time series analysis. These assumptions are used to make our model reliable to predict the real data.
 
@@ -171,21 +142,13 @@ ___
 
 Please check the assumption of no-autocorrelation from your models using Ljung-Box Test.
 
-<<<<<<< HEAD
+```
+# your code here
+```
+
+___
 8. Which of this following statement below is **TRUE** based on no-autocorrelation assumption of our time series model?
  - [ ] there are no autocorrelation in error, means each error does not has relation
  - [ ] there are autocorrelation in error, means each error has relation
  - [ ] there are autocorrelation of each prediction data, means each predicted data has relation
  - [ ] there are no autocorrelation in each prediction data, means each predicted data has no relation
-=======
-```
-# your code here
-```
-___
-8. Which of the following statement is **TRUE** about the no-autocorrelation assumption of the time series model?
- - [ ] there is no autocorrelation in error, means each error does not have any relation
- - [ ] there is autocorrelation in error, means each error have relation
- - [ ] there is autocorrelation of each prediction data, means each predicted data have relation
- - [ ] there is no autocorrelation in each prediction data, means each predicted data have no relation
-___
->>>>>>> 733dcc0193d36cf1855d54ce854eda59384b969a
