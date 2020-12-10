@@ -50,7 +50,7 @@ Before we make a forecasting model, let us first inspect our data. Is our data a
 ```
 
 ___
-1. Which statement below is **TRUE** based on the time series plot above?
+1. Which statement below is **TRUE** based on the time series?
  - [ ] Additive time series is additive because the seasonality pattern is rather increase across the observed period
  - [ ] Multiplicative time series is multiplicative because as the trend increase, the amplitude of seasonal activity is also increases
  - [ ] Time series has not trend, seasonality, and error pattern.
