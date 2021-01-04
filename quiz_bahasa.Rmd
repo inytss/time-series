@@ -50,8 +50,8 @@ Sebelum kita membuat model peramalan, pertama mari kita coba amati data kita. Ap
 ```
 
 ___
-1. Manakah pernyataan dibawah ini yang **BENAR** mengenai plot *time series* diatas?
-  - [ ] Aditif *time series* adalah aditif karena pola *seasonality* selalu tetap setiap periode pengamatan
+1. Manakah pernyataan dibawah ini yang **BENAR** mengenai *time series*?
+  - [ ] Aditif *time series* adalah aditif karena pola *seasonality* agak meningkat setiap periode pengamatan
   - [ ] Multiplikatif *time series* adalah multiplikatif karena ketika trennya meningkat, amplitudo/besaran dari aktifitas *seasonal*-nya konstan
   - [ ] *Time series* tidak memiliki pola tren, *seasonal*, dan *error*
 ___
