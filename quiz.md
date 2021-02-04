@@ -89,7 +89,7 @@ ___
  - [ ] HoltWinters(train, beta = F, gamma = F)
 ___
 
-Let's explore another method to forecast our `train_theft` data using the ARIMA algorithm. Let's build an ARIMA model using `stlm()` function and set the method argument as `arima` then store it as `model_arima` object.
+Let's explore another method to forecast our `train_theft` data using the ARIMA algorithm. Let's build an ARIMA model using `stlm()` function, set the method argument as `arima` and don't forget to set the `s.window` argument into your time series frequency then store it as `model_arima` object.
 
 ```
 # your code here
@@ -123,9 +123,9 @@ Now we have the forecast result of the Holt-Winters and ARIMA model. To evaluate
 
 ___
 6. Based on the error result we have got, which of this following statement about model evaluation using error measure is **TRUE**?
- - [ ] using ARIMA model, the mean absolute of percentage error for each forecasting result is 11.6%
- - [ ] using Holt-Winters model, the mean absolute of percentage error for each forecasting result is around 11.6 theft event
- - [ ] the mean absolute of percentage error difference between ARIMA and Holt-Winters model by 1.1%
+ - [ ] using ARIMA model, the average error for each forecasting result is 11.6%
+ - [ ] using Holt-Winters model, the average error of each forecasting result is around 11.6 theft event
+ - [ ] The difference of mean absolute percentage error between ARIMA and Holt-Winters model is 0.53%
 ___
 
 # Model Evaluation (Assumtion Checking)

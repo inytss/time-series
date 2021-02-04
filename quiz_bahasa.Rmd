@@ -113,7 +113,7 @@ ___
  - [ ] HoltWinters(train, beta = F, gamma = F)
 ___
 
-Mari kita mengekplorasi model lain untuk meramalkan data `train_theft` menggunakan algoritme ARIMA. Silahkan bangunlah sebuah model ARIMA menggunakan fungsi `stlm()` dan aturlah pada parameter `method = "arima"` lalu simpanlah kedalam objek `model_arima`.
+Mari kita mengekplorasi model lain untuk meramalkan data `train_theft` menggunakan algoritme ARIMA. Silahkan bangunlah sebuah model ARIMA menggunakan fungsi `stlm()`, aturlah pada argumen `method` menjadi "arima" dan jangan lupa untuk mengatur argumen `s.window` menjadi sejumlah frekuensi data time series yang dimiliki lalu simpanlah kedalam objek `model_arima`.
 
 ```{r}
 # your code here
@@ -145,7 +145,7 @@ ___
 6. Berdasarkan hasil diatas, manakah dari pernyataan berikut yang **BENAR**?
   - [ ] Nilai *mean absolute percentage error* pada model ARIMA sebesar 11.6%
   - [ ] Nilai *mean absolute percentage error* pada model *Holt-Winters* sekitar 11.6 kejadian pencurian
-  - Perbedaan nilai *mean absolute percentage error* antara model ARIMA dan *Holt-Winters* sekitar 1.1%
+  - Perbedaan nilai *mean absolute percentage error* antara model ARIMA dan *Holt-Winters* sekitar 0.53%
 ___
 
 # Evaluasi Model (Pemeriksaan Asumsi)
