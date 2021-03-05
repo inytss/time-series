@@ -1,12 +1,12 @@
 # Time Series and Forecasting Quiz
 
-This quiz is part of Algoritma Academy assessment process. Congratulations on completing the Time Series and Forecasting course! We will conduct an assessment quiz to test practical forecasting model techniques you have learned on the course. The quiz is expected to be taken in the classroom, please contact our team of instructors if you missed the chance to take it in class.
+This quiz is part of Algoritma Academy assessment process. Congratulations on completing the Time Series and Forecasting course! We will conduct an assessment quiz to test the practical forecasting model techniques that you have learned on the course. The quiz is expected to be taken in the classroom, please contact our team of instructors if you missed the chance to take it in class.
 
 # Data Exploration
 
 In this quiz, you will use the Chicago Crime dataset. The dataset contains real-time historical data of the various types of crime in the city of Chicago. This dataset was downloaded from [Chicago Data Portal](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2) and has been filtered for the primary type of crime "THEFT". The data is stored as a `.csv` file in this repository as `theft-ts.csv`.
 
-Please load and investigate the data given `theft-ts.csv` and assign it to `theft` object, then investigate the data using `str()` or `glimpse()` function.
+Please load the data given `theft-ts.csv` and assign it to `theft` object, then investigate the data using `str()` or `glimpse()` function.
 
 ```
 # your code here
@@ -14,29 +14,30 @@ Please load and investigate the data given `theft-ts.csv` and assign it to `thef
 
 The `theft` data consists of 6,492 observations and  2 variables. The description of each feature is explained below:
 
-* `Date` : Date when the incident occurred.
+* `Date` : Date when the incident occurred (recorded daily).
 * `Amount_Theft` : The total amount of theft on each date.
 
 As a data scientist, you will develop a forecasting model that will aid security and other concerned parties in the decision-making process. Based on our data, we want to forecast the number of theft incidents (`Amount_Theft`). The purpose is to anticipate any crime activities on the given date and help security parties to allocate a proper amount of resources in the city of Chicago. 
 
-Before we make a forecasting model, let us first inspect our data. Is our data a time series object? If not, please make a time series object using the `theft` data using `ts()` function with the frequency of this period is 365 and store it under `theft_ts`. To know what type of time series object `theft_ts` data, subset it which contains the first 10 years using `head()` and visualize it with `autoplot()` from `forecast` package and answer the first question. Remember, when you subset it, please do not store it into an object, just visualize it.
+Before we make a forecasting model, let us first inspect our data. Is our data a time series object? If not, please make a time series object using the `theft` data using `ts()` function with the frequency of this period is 365 and store it under `theft_ts`. To know the characteristics of our time series object (`theft_ts`), subset it to obtain the first 15 years of data using `head()` and visualize it with `autoplot()` from `forecast` package. Answer the first question based on the plot you've created.
+
+*Note: When you subset the ts object, you don't need to store the result into an object. You can directly visualize it.*
 
 ```
 # your code here
 ```
 
-## Data Exploration Quiz
-
 ___
-1. Which is the statement below is **TRUE** based on the time series?
- - [ ] Additive time series is additive because the seasonality pattern is rather increase across the observed period
- - [ ] Multiplicative time series is multiplicative because as the trend increase, the amplitude of seasonal activity is also increases
- - [ ] Time series has not trend, seasonality, and error pattern
+1. Which statement below is **TRUE** based on the time series plot?
+ - [ ] It's an additive time series because as the trend increases, the amplitude of seasonal activity is also increases.
+ - [ ] It's a multiplicative time series because as the trend increase, the amplitude of seasonal activity is rather constant.
+ - [ ] Time series has no trend, seasonality, and error pattern.
+ - [ ] Time series has trend, seasonality, and error pattern.
 ___
 
 # Decompose
 
-After we make the time series object for our `theft` data, we inspect our time series element of our `theft_ts` data. We want to look at the trend and seasonality pattern to choose the appropriate model for forecast `theft_ts` data. We can use `decompose()` to know the trend, seasonality, and error of our time series data and visualize them using `autoplot()`.
+After we make the time series object `theft_ts`, we can inspect its time series element. Try to look at the trend and seasonality pattern of the data to choose the appropriate model in forecasting `theft_ts` data. We can use `decompose()` to inspect the trend, seasonality, and error of our time series data and visualize them using `autoplot()`. Use the parameter `type = "multiplicative"` when decomposing the data to assume that the data is a multiplicative time series.
 
 ```
 # your code here
@@ -50,7 +51,7 @@ ___
 
 # Cross Validation
 
-We have looked at the trends and seasonality of our `theft_ts` data. The next step is to build our time series model. However, we should split the dataset into training and test data before we make a model. In this section, please split the `theft_ts` data into `test_theft` which contains the last 365 days of our data using `tail()` function, and use the rest as `train_theft` using `head()` function.
+We have looked at the trend and seasonality of our `theft_ts` data. The next step is to build our time series model. However, we should split the dataset into training and test data before we make a model. In this section, please split the `theft_ts` data into `test_theft` which contains the last 365 days of our data using `tail()` function, and use the rest as `train_theft` using `head()` function.
 
 ```
 # your code here
@@ -58,7 +59,7 @@ We have looked at the trends and seasonality of our `theft_ts` data. The next st
 
 # Time Series Modeling
 
-After you split the `theft_ts` into `train` and `test` data, please inspect the trend and seasonality pattern of `train_theft` data.
+After splitting the `theft_ts` into `train_theft` and `test_theft` data, please inspect the trend and seasonality pattern of `train_theft` data.
 
 ```
 # your code here
@@ -78,42 +79,41 @@ After we analyze the decomposition result of `train_theft`, we are ready to buil
 # your code here
 ```
 
-
-## Modeling Quiz
-
 ___
-4. If your answer is yes using Holt-Winters as a model, which is the most appropriate code to model the `train_theft` data?
+4. Using Holt-Winters as a model, which is the most appropriate code to model the `train_theft` data?
  - [ ] HoltWinters(train, gamma = F)
  - [ ] HoltWinters(train)
  - [ ] HoltWinters(train, beta = F)
  - [ ] HoltWinters(train, beta = F, gamma = F)
 ___
 
-Let's explore another method to forecast our `train_theft` data using the ARIMA algorithm. Let's build an ARIMA model using `stlm()` function, set the method argument as `arima` and don't forget to set the `s.window` argument into your time series frequency then store it as `model_arima` object.
+Let's explore another method to forecast our `train_theft` data using the ARIMA algorithm. Let's build an ARIMA model using `stlm()` function, set the method argument as `method = arima` and don't forget to set the `s.window` argument based on your time series frequency then store it as `model_arima` object.
 
 ```
 # your code here
 ```
-
-## Modeling Quiz
 
 ARIMA is a statistical model to forecast time series object. It stands for AR(autoregressive) I (integrated) MA (moving average).
 
 ___
 5. Based on the explanation above which of this following statement is **TRUE** about ARIMA(p,d,q)?
  - [ ] the time series object is being differenced q times to make it stationary
- - [ ] p is the number of orders you can use to determine the process of making an autoregressive model
+ - [ ] p is the number of orders you can use to determine the process of making an Autoregressive model
  - [ ] d shows the number of time in 1 frequency
  - [ ] p shows the amount of data for smoothing error using Moving Average
 ___
 
 # Forecasting
 
-On the previous section, we have built a forecasting model using Holt-Winters and ARIMA. Using `model_hw` and `model_arima` model, try forecasting the theft frequency for the following 365 days using `forecast()` function. Store the result from `model_hw` in `hw_forecast` and `model_arima` in `arima_forecast`.
+On the previous section, we have built a forecasting model using Holt-Winters and ARIMA. Using `model_hw` and `model_arima`, try to forecast the theft frequency for the following 365 days using `forecast()` function. Store the result from `model_hw` in `hw_forecast` and `model_arima` in `arima_forecast`.
+
+```
+# your code here
+```
 
 # Model Evaluation (Error)
 
-Now we have the forecast result of the Holt-Winters and ARIMA model. To evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our `test_theft` data. Please find each MAPE value from both model using `accuracy()` function from `forecast` package and see the MAPE value.
+Now we have the forecast result of the Holt-Winters and ARIMA model. To evaluate our model, find the MAPE (mean absolute percentage error) value between our forecast result and our actual `test_theft` data. Please find each MAPE value from both model using `accuracy()` function from `forecast` package.
 
 ```
 # your code here
@@ -122,18 +122,18 @@ Now we have the forecast result of the Holt-Winters and ARIMA model. To evaluate
 ## Model Evaluation Quiz
 
 ___
-6. Based on the error result we have got, which of this following statement about model evaluation using error measure is **TRUE**?
- - [ ] using ARIMA model, the average error for each forecasting result is 11.6%
- - [ ] using Holt-Winters model, the average error of each forecasting result is around 11.6 theft event
+6. Based on the result, which of the following statement is **TRUE**?
+ - [ ] using ARIMA model, the mean absolute percentage error is 11.6%
+ - [ ] using Holt-Winters model, the mean absolute percentage error is around 11.6 theft event
  - [ ] The difference of mean absolute percentage error between ARIMA and Holt-Winters model is 0.53%
 ___
 
 # Model Evaluation (Assumtion Checking)
 
-There are some assumptions when we use the time series analysis. These assumptions are used to make our model reliable to predict the real data.
+There are several assumptions to check when performing time series analysis. These assumptions are used to make our model reliable to predict the real data.
 
 ___
-7. To make sure that our forecasting model is reliable enough, what assumption should we check in the time series analysis?
+7. What assumption should we check in the time series analysis?
  - [ ] Multicollinearity, No-Autocorrelation
  - [ ] No-Autocorrelation, Normality
  - [ ] Linearity, No-Autocorrelation
@@ -147,8 +147,8 @@ Please check the assumption of no-autocorrelation from your models using Ljung-B
 ```
 
 ___
-8. Which of this following statement below is **TRUE** based on no-autocorrelation assumption of our time series model?
- - [ ] there are no autocorrelation in error, means each error does not has relation
- - [ ] there are autocorrelation in error, means each error has relation
- - [ ] there are autocorrelation of each prediction data, means each predicted data has relation
- - [ ] there are no autocorrelation in each prediction data, means each predicted data has no relation
+8. Which of this following statement is **TRUE** about the no-autocorrelation assumption of our time series model?
+ - [ ] there is no autocorrelation in error, meaning that each error have no relation
+ - [ ] there is autocorrelation in error, meaning that each error have a relation
+ - [ ] there is autocorrelation in the prediction data, meaning that each predicted data a have relation
+ - [ ] there is no autocorrelation in the prediction data, meaning that each predicted data have no relation
