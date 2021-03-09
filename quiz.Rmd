@@ -45,10 +45,10 @@ As a data scientist, you will develop a forecasting model that will aid security
 Before we make a forecasting model, let us first inspect our data. Is our data a time series object? If not, please make a time series object using the `theft` data using `ts()` function with the frequency of this period is 365 and store it under `theft_ts`. 
 
 ___
-1. Time series data has several characteristics. Which of the following statement is **NOT TRUE** based on your knowledge on time series?
- - [ ] Additive time series is additive because the amplitude of seasonal activity is rather constant over the observed period.
- - [ ] Multiplicative time series is multiplicative because as the trend increases, the amplitude of seasonal activity is also increases.
- - [ ] Time series data always have trend, seasonality, and error pattern.
+1. Time series data has several characteristics. Based on your knowledge on time series, which of the following statement is **TRUE**?
+ - [ ] Additive time series is additive because the amplitude of seasonal activity increases across the observed period.
+ - [ ] Multiplicative time series is multiplicative because as the trend increases, the amplitude of seasonal activity also increases.
+ - [ ] Time series data has no trend, seasonality, and error pattern.
 ___
 
 To know the characteristics of our time series object we can visualize it using plot. For example, you can subset `theft_ts` to obtain the first 10 years of data using `head()` and visualize it with `autoplot()` from `forecast` package. 

@@ -45,15 +45,15 @@ Sebagai seorang *data scientist*, Anda akan mengembangkan model peramalan yang a
 Sebelum kita membuat model peramalan, mari kita amati data kita. Apakah data yang kita miliki sudah berupa objek *time series*? Apabila belum, silahkan buat objek *time series* berdasarkan data `theft` menggunakan fungsi `ts()` dengan frekuensi yang digunakan adalah 365 dan simpanlah ke dalam objek `theft_ts`. 
 
 ___
-1. Data time series memiliki beberapa karakteristik. Manakah pernyataan di bawah ini yang **TIDAK BENAR** terkait time series?
-  - [ ] *Additive time series* disebut additive karena amplitudo/besaran aktivitas *seasonal*-nya cenderung konstan pada periode observasi.
+1. Data time series memiliki beberapa karakteristik. Manakah pernyataan di bawah ini yang **BENAR** terkait time series?
+  - [ ] *Additive time series* disebut additive karena amplitudo/besaran aktivitas *seasonal*-nya cenderung meningkat selama periode observasi.
   - [ ] *Multiplicative time series* disebut multiplicative karena seiring dengan meningkatnya tren, amplitudo/besaran aktivitas *seasonal*-nya juga meningkat.
-  - [ ] Data time series selalu memiliki pola tren, *seasonal*, dan *error*
+  - [ ] Data time series tidak memiliki pola tren, *seasonal*, dan *error*.
 
 *Referensi Opsi Bahasa Inggris:*
- - [ ] Additive time series is additive because the amplitude of seasonal activity is rather constant over the observed period.
- - [ ] Multiplicative time series is multiplicative because as the trend increases, the amplitude of seasonal activity is also increases.
- - [ ] Time series data always have trend, seasonality, and error pattern.
+ - [ ] Additive time series is additive because the amplitude of seasonal activity increases across the observed period.
+ - [ ] Multiplicative time series is multiplicative because as the trend increases, the amplitude of seasonal activity also increases.
+ - [ ] Time series data has no trend, seasonality, and error pattern.
 ___
 
 Untuk mengetahui karakteristik dari objek *time series* `theft_ts`, ambilah data pada 10 tahun pertama dengan menggunakan fungsi `head()` dan buatlah visualisasinya menggunakan fungsi `autoplot()` dari *package* `forecast`.
