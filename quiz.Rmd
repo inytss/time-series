@@ -42,7 +42,16 @@ The `theft` data consists of 6,492 observations and 2 variables. The description
 
 As a data scientist, you will develop a forecasting model that will aid security and other concerned parties in the decision-making process. Based on our data, we want to forecast the number of theft incidents (`Amount_Theft`). The purpose is to anticipate any crime activities on the given date and help security parties to allocate a proper amount of resources in the city of Chicago. 
 
-Before we make a forecasting model, let us first inspect our data. Is our data a time series object? If not, please make a time series object using the `theft` data using `ts()` function with the frequency of this period is 365 and store it under `theft_ts`. To know the characteristics of our time series object (`theft_ts`), subset it to obtain the first 15 years of data using `head()` and visualize it with `autoplot()` from `forecast` package. Answer the first question based on the plot you've created. 
+Before we make a forecasting model, let us first inspect our data. Is our data a time series object? If not, please make a time series object using the `theft` data using `ts()` function with the frequency of this period is 365 and store it under `theft_ts`. 
+
+___
+1. Time series data has several characteristics. Which of the following statement is **NOT TRUE** based on your knowledge on time series?
+ - [ ] Additive time series is additive because the amplitude of seasonal activity is rather constant over the observed period.
+ - [ ] Multiplicative time series is multiplicative because as the trend increases, the amplitude of seasonal activity is also increases.
+ - [ ] Time series data always have trend, seasonality, and error pattern.
+___
+
+To know the characteristics of our time series object we can visualize it using plot. For example, you can subset `theft_ts` to obtain the first 10 years of data using `head()` and visualize it with `autoplot()` from `forecast` package. 
 
 *Note: When you subset the ts object, you don't need to store the result into an object. You can directly visualize it.*
 
@@ -50,14 +59,6 @@ Before we make a forecasting model, let us first inspect our data. Is our data a
 # your code here
 
 ```
-
-___
-1. Which statement below is **TRUE** based on the time series plot?
- - [ ] It's an additive time series because as the trend increases, the amplitude of seasonal activity is also increases.
- - [ ] It's a multiplicative time series because as the trend increase, the amplitude of seasonal activity is rather constant.
- - [ ] Time series has no trend, seasonality, and error pattern.
- - [ ] Time series has trend, seasonality, and error pattern.
-___
 
 # Decompose
 

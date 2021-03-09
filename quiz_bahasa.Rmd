@@ -42,29 +42,29 @@ Data `theft` mengandung 6,492 observasi dan 2 variabel. Deskripsi pada masing-ma
 
 Sebagai seorang *data scientist*, Anda akan mengembangkan model peramalan yang akan membantu keamanan dan pihak terkait lainnya dalam proses pengambilan keputusan. Berdasarkan data yang kita miliki, kita akan melakukan peramalan banyaknya kejadian pencurian (`Amount_Theft`) untuk mengantisipasi aktivitas kejahatan pada tanggal tertentu dan membantu pihak keamanan untuk mengalokasikan jumlah sumber daya yang tepat untuk kota-kota di Chicago. 
 
-Sebelum kita membuat model peramalan, mari kita amati data kita. Apakah data yang kita miliki sudah berupa objek *time series*? Apabila belum, silahkan buat objek *time series* berdasarkan data `theft` menggunakan fungsi `ts()` dengan frekuensi yang digunakan adalah 365 dan simpanlah ke dalam objek `theft_ts`. Untuk mengetahui karakteristik dari objek *time series* `theft_ts`, ambilah data pada 15 tahun pertama dengan menggunakan fungsi `head()` dan buatlah visualisasinya menggunakan fungsi `autoplot()` dari *package* `forecast`. Jawablah pertanyaan pertama berdasarkan plot yang telah dibuat. 
+Sebelum kita membuat model peramalan, mari kita amati data kita. Apakah data yang kita miliki sudah berupa objek *time series*? Apabila belum, silahkan buat objek *time series* berdasarkan data `theft` menggunakan fungsi `ts()` dengan frekuensi yang digunakan adalah 365 dan simpanlah ke dalam objek `theft_ts`. 
 
-*Note: Ketika Anda mengambil data 15 tahun pertama untuk visualisasi, Anda tidak perlu menyimpannya kedalam suatu objek dan dapat langsung memvisualisasikannya.*
+___
+1. Data time series memiliki beberapa karakteristik. Manakah pernyataan di bawah ini yang **TIDAK BENAR** terkait time series?
+  - [ ] *Additive time series* disebut additive karena amplitudo/besaran aktivitas *seasonal*-nya cenderung konstan pada periode observasi.
+  - [ ] *Multiplicative time series* disebut multiplicative karena seiring dengan meningkatnya tren, amplitudo/besaran aktivitas *seasonal*-nya juga meningkat.
+  - [ ] Data time series selalu memiliki pola tren, *seasonal*, dan *error*
+
+*Referensi Opsi Bahasa Inggris:*
+ - [ ] Additive time series is additive because the amplitude of seasonal activity is rather constant over the observed period.
+ - [ ] Multiplicative time series is multiplicative because as the trend increases, the amplitude of seasonal activity is also increases.
+ - [ ] Time series data always have trend, seasonality, and error pattern.
+___
+
+Untuk mengetahui karakteristik dari objek *time series* `theft_ts`, ambilah data pada 10 tahun pertama dengan menggunakan fungsi `head()` dan buatlah visualisasinya menggunakan fungsi `autoplot()` dari *package* `forecast`.
+
+*Note: Ketika Anda mengambil data 10 tahun pertama untuk visualisasi, Anda tidak perlu menyimpannya kedalam suatu objek dan dapat langsung memvisualisasikannya.*
 
 ```{r}
 # your code here
 
 ```
 
-___
-1. Manakah pernyataan di bawah ini yang **BENAR** terkait plot *time series* tersebut?
-  - [ ] Objek adalah *additive time series* karena seiring dengan meningkatnya tren, amplitudo/besaran dari aktivitas *seasonal* juga meningkat.
-  - [ ] Objek adalah *multiplicative time series* karena seiring dengan meningkatnya tren, amplitudo/besaran dari aktivitas *seasonal* cenderung konstan.
-  - [ ] *Time series* tidak memiliki pola tren, *seasonal*, dan *error*
-  - [ ] *Time series* memiliki pola tren, *seasonal*, dan *error*
-  
-*Referensi Opsi Bahasa Inggris:*
- - [ ] It's an additive time series because as the trend increases, the amplitude of seasonal activity is also increases.
- - [ ] It's a multiplicative time series because as the trend increase, the amplitude of seasonal activity is rather constant.
- - [ ] Time series has no trend, seasonality, and error pattern.
- - [ ] Time series has trend, seasonality, and error pattern.
-___
-  
 # Dekomposisi
   
 Setelah kita membuat objek *time series* `theft_ts`, mari melihat elemen *time series* di dalamnya. Kita ingin melihat pola tren dan *seasonality* untuk menentukan model yang tepat untuk meramalkan data `theft_ts`. Kita dapat menggunakan fungsi `decompose()` untuk mengetahui pola tren, *seasonality*, dan *error* pada data *time series* dan memvisualisasikannya menggunakan fungsi `autoplot()`. Gunakan parameter `type =" multiplicative "` saat melakukan dekomposisi dengan mengasumsikan bahwa data merupakan *multiplicative time series*. 
