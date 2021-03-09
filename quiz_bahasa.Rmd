@@ -26,39 +26,48 @@ Kuis ini merupakan bagian dari proses penilaian *Algoritma Academy*. Selamat ata
 
 # Eksplorasi Data
 
-Pada kuis ini, Anda akan menggunakan data kejahatan di Chicago. Data tersebut mengandung rekam jejak *real-time* beberapa jenis kejahatan pada beberapa kota di Chicago. Data tersebut diunduh pada [Chicago Data Portal](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2) dan sudah diseleksi hanya pada jenis kejahatan *"THEFT"*. Data tersebut tersimpan dalam bentuk `.csv` pada *repository* ini sebagai file `theft-ts.csv`.
+Pada kuis ini, Anda akan menggunakan data kejahatan di Chicago. Data tersebut mengandung rekam jejak beberapa jenis kejahatan pada beberapa kota di Chicago. Data tersebut diunduh pada [Chicago Data Portal](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2) dan sudah diseleksi hanya untuk jenis kejahatan *"THEFT"*. Data tersebut tersimpan dalam *repository* ini sebagai file `theft-ts.csv`.
 
-Silahkan baca dan periksalah data yang bernama `theft-ts.csv` dan simpanlah pada objek `theft`, lalu periksalah data tersebut dengan menggunakan fungsi `str()` atau `glimpse()`.
+Silahkan baca data `theft-ts.csv` dan simpanlah pada objek `theft`, lalu periksalah data tersebut menggunakan fungsi `str()` atau `glimpse()`.
 
 ```{r}
 # your code here
 
 ```
 
-Data `theft` mengandung 6,492 observasi dan 2 variabel. Deskripsi pada masing-masing fitur dijelaskan dibawah ini:
+Data `theft` mengandung 6,492 observasi dan 2 variabel. Deskripsi pada masing-masing fitur dijelaskan di bawah ini:
 
-* `Date`: tanggal dari insiden tersebut terjadi
+* `Date`: tanggal dari insiden terjadi (direkam per hari)
 * `Amount_Theft`: total jumlah pencurian per hari
 
-Sebagai seorang *data scientist*, Anda akan mengembangkan model peramalan yang akan membantu keamanan dan pihak terkait lainnya dalam proses pengambilan keputusan. Berdasarkan data yang kita miliki, kita akan melakukan peramalan pada banyaknya kejadian pencurian (`Amount_Theft`). Tujuannya adalah untuk mengantisipasi aktifitas kejahatan pada tanggal tertentu dan membantu pihak keamanan untuk mengalokasikan jumlah sumber daya yang tepat untuk beberapa kota di Chicago. 
+Sebagai seorang *data scientist*, Anda akan mengembangkan model peramalan yang akan membantu keamanan dan pihak terkait lainnya dalam proses pengambilan keputusan. Berdasarkan data yang kita miliki, kita akan melakukan peramalan banyaknya kejadian pencurian (`Amount_Theft`) untuk mengantisipasi aktivitas kejahatan pada tanggal tertentu dan membantu pihak keamanan untuk mengalokasikan jumlah sumber daya yang tepat untuk kota-kota di Chicago. 
 
-Sebelum kita membuat model peramalan, pertama mari kita coba amati data kita. Apakah data yang kita miliki adalah objek *time series*? Apabila tidak, silahkan buatlah menjadi objek *time series* berdasarkan data `theft` menggunakan fungsi `ts()` dengan frekuensi periode yang digunakan adalah 365 dan simpanlah kedalam objek `theft_ts`. Untuk mengetahui tipe dari objek *time series* `theft_ts`, ambilah hanya pada data 10 tahun pertama dengan menggunakan fungsi `head()` dan buatlah visualisasinya menggunakan fungsi `autoplot()` dari *package* `forecast` serta jawablah pertanyaan pertama. Ingat, ketika Anda mengambil data 10 tahun pertama, Anda tidak perlu menyimpannya kedalam suatu objek tertentu, cukup hanya memvisualisasikannya saja.
+Sebelum kita membuat model peramalan, mari kita amati data kita. Apakah data yang kita miliki sudah berupa objek *time series*? Apabila belum, silahkan buat objek *time series* berdasarkan data `theft` menggunakan fungsi `ts()` dengan frekuensi yang digunakan adalah 365 dan simpanlah ke dalam objek `theft_ts`. 
+
+___
+1. Data time series memiliki beberapa karakteristik. Manakah pernyataan di bawah ini yang **TIDAK BENAR** terkait time series?
+  - [ ] *Additive time series* disebut additive karena amplitudo/besaran aktivitas *seasonal*-nya cenderung konstan pada periode observasi.
+  - [ ] *Multiplicative time series* disebut multiplicative karena seiring dengan meningkatnya tren, amplitudo/besaran aktivitas *seasonal*-nya juga meningkat.
+  - [ ] Data time series selalu memiliki pola tren, *seasonal*, dan *error*
+
+*Referensi Opsi Bahasa Inggris:*
+ - [ ] Additive time series is additive because the amplitude of seasonal activity is rather constant over the observed period.
+ - [ ] Multiplicative time series is multiplicative because as the trend increases, the amplitude of seasonal activity is also increases.
+ - [ ] Time series data always have trend, seasonality, and error pattern.
+___
+
+Untuk mengetahui karakteristik dari objek *time series* `theft_ts`, ambilah data pada 10 tahun pertama dengan menggunakan fungsi `head()` dan buatlah visualisasinya menggunakan fungsi `autoplot()` dari *package* `forecast`.
+
+*Note: Ketika Anda mengambil data 10 tahun pertama untuk visualisasi, Anda tidak perlu menyimpannya kedalam suatu objek dan dapat langsung memvisualisasikannya.*
 
 ```{r}
 # your code here
 
 ```
 
-___
-1. Manakah pernyataan dibawah ini yang **BENAR** mengenai *time series*?
-  - [ ] Aditif *time series* adalah aditif karena pola *seasonality* agak meningkat setiap periode pengamatan
-  - [ ] Multiplikatif *time series* adalah multiplikatif karena ketika trennya meningkat, amplitudo/besaran dari aktifitas *seasonal*-nya meningkat
-  - [ ] *Time series* tidak memiliki pola tren, *seasonal*, dan *error*
-___
-  
 # Dekomposisi
   
-Setelah kita membuat objek *time series* pada data `theft` kita, kita akan melihat elemen *time series* pada data `theft_ts`. Kita ingin melihat pola tren dan *seasonality* untuk menentukan model yang tepat untuk meramalkan data `theft_ts`. Kita dapat menggunakan fungsi `decompose()` untuk mengetahui pola tren, *seasonality*, dan *error* pada data *time series* kita dan memvisualisasikannya menggunakan fungsi `autoplot()`.
+Setelah kita membuat objek *time series* `theft_ts`, mari melihat elemen *time series* di dalamnya. Kita ingin melihat pola tren dan *seasonality* untuk menentukan model yang tepat untuk meramalkan data `theft_ts`. Kita dapat menggunakan fungsi `decompose()` untuk mengetahui pola tren, *seasonality*, dan *error* pada data *time series* dan memvisualisasikannya menggunakan fungsi `autoplot()`. Gunakan parameter `type =" multiplicative "` saat melakukan dekomposisi dengan mengasumsikan bahwa data merupakan *multiplicative time series*. 
 
 ```{r}
 # your code here
@@ -70,11 +79,16 @@ ___
   - [ ] tidak terdapat pola tren
   - [ ] pola tren meningkat
   - [ ] pola tren menurun
+  
+*Referensi Opsi Bahasa Inggris:*
+ - [ ] there's no trend
+ - [ ] the trend is increasing
+ - [ ] the trend is decreasing
 ___
 
 # *Cross Validation*
 
-Kita suda melihat pola tren dan *seasonal* pada data `theft_ts`. Langkah selanjutnya adalah membangun model *time series* kita. Bagaimanapun, kita harus memisahkan data menjadi data *train* dan *test* sebelum membuat model. Pada bagian ini, silahkan pisahkan data `theft_ts` menjadi `test_theft` yang mengandung data 365 hari terakhir pada data asli kita menggunakan fungsi `tail()` dan gunakan sisa datanya sebagai `train_theft` dengan menggunakan fungsi `head()`.
+Kita sudah melihat pola tren dan *seasonal* pada data `theft_ts`. Langkah selanjutnya adalah membangun model *time series*. Sebelum membuat model, kita perlu memisahkan data menjadi data *train* dan *test*. Silahkan pisahkan data `theft_ts` menjadi `test_theft` yang mengandung data 365 hari terakhir dari data asli menggunakan fungsi `tail()`, kemudian gunakan sisa datanya sebagai `train_theft` dengan menggunakan fungsi `head()`.
 
 ```{r}
 # your code here
@@ -91,14 +105,20 @@ Setelah Anda memisahkan data `theft_ts` menjadi data *train* dan *test*, silahka
 ```
 
 ___
-3. Berdasarkan grafik dekomposisi diatas, apakah tepat apabila kita menggunakan model *Holt-Winters*? Mengapa?
-  - [ ] Iya, karena grafik tersebut mengandung pola tren dan *seasonality*
-  - [ ] Tidak, akan lebih tepat ketika menggunakan *Holt's Exponential Smoothing*
-  - [ ] Tidak, karena kita hanya fokus pada pola tren, oleh karena itu lebih tepat ketika menggunakan *Single Moving Average* (SMA)
-  - [ ] Iya, karena grafik tersebut mengandung pola *seasonality*
+3. Berdasarkan grafik dekomposisi di atas, apakah tepat apabila kita menggunakan model *Holt-Winters*? Mengapa?
+  - [ ] Ya, karena grafik tersebut mengandung pola tren dan *seasonal*
+  - [ ] Tidak, akan lebih tepat bila menggunakan *Holt's Exponential Smoothing*
+  - [ ] Tidak, karena kita hanya fokus pada pola tren. Oleh karena itu lebih tepat apabila menggunakan *Single Moving Average* (SMA)
+  - [ ] Ya, karena grafik tersebut hanya mengandung pola *seasonal*
+
+*Referensi Opsi Bahasa Inggris:*
+ - [ ] Yes, because the plot consists of trends and seasonality
+ - [ ] No, it's more appropriate to use Holt's Exponential Smoothing
+ - [ ] No, because we only focus on the trend, therefore, it is more appropriate to use Single Moving Average (SMA)
+ - [ ] Yes, because the plot only consist of seasonality
 ___
 
-Setelah kita menganalisis hasil dekomposisi pada data `train_theft`, kita sudah siap untuk membangun model. Silahkan bangunlah model pertama menggunakan algoritme *Holt-Winters*. Anda dapat menggunakan fungsi `HoltWinters()` dan simpanlah pada objek `model_hw`.
+Setelah kita menganalisis hasil dekomposisi pada data `train_theft`, kita sudah siap untuk membangun model. Silahkan bangun model pertama menggunakan algoritma *Holt-Winters*. Anda dapat menggunakan fungsi `HoltWinters()` dan simpanlah ke dalam objek `model_hw`.
 
 ```{r}
 # your code here
@@ -106,35 +126,46 @@ Setelah kita menganalisis hasil dekomposisi pada data `train_theft`, kita sudah 
 ```
 
 ___
-4. Apabila jawaban Anda adalah iya, menggunakan model *Holt-Winters*, manakah *code* yang lebih tepat untuk memodelkan data `train_theft`?
- - [ ] HoltWinters(train, gamma = F)
- - [ ] HoltWinters(train)
- - [ ] HoltWinters(train, beta = F)
- - [ ] HoltWinters(train, beta = F, gamma = F)
+4. Untuk membuat model *Holt-Winters*, manakah *code* yang paling tepat untuk memodelkan data `train_theft`?
+ - [ ] HoltWinters(train_theft, gamma = F)
+ - [ ] HoltWinters(train_theft)
+ - [ ] HoltWinters(train_theft, beta = F)
+ - [ ] HoltWinters(train_theft, beta = F, gamma = F)
 ___
 
-Mari kita mengekplorasi model lain untuk meramalkan data `train_theft` menggunakan algoritme ARIMA. Silahkan bangunlah sebuah model ARIMA menggunakan fungsi `stlm()`, aturlah pada argumen `method` menjadi "arima" dan jangan lupa untuk mengatur argumen `s.window` menjadi sejumlah frekuensi data time series yang dimiliki lalu simpanlah kedalam objek `model_arima`.
+Mari kita mengekplorasi model lain untuk meramalkan data `train_theft` menggunakan algoritma ARIMA. Silahkan bangun sebuah model ARIMA menggunakan fungsi `stlm()`. Aturlah argumen `method = "arima"` dan argumen `s.window` berdasarkan frekuensi objek time series yang digunakan sebelumnya. Simpan hasilnya ke dalam objek `model_arima`.
 
 ```{r}
 # your code here
 ```
 
-ARIMA adalah model statistik untuk melakukan peramalan pada objek *time series*. ARIMA merupakan kepanjangan dari AR(*autoregressive*)-I(*integrated*)-MA(*moving average*).
+ARIMA adalah model statistik untuk melakukan peramalan pada objek *time series*. ARIMA merupakan singkatan dari AR(*autoregressive*)-I(*integrated*)-MA(*moving average*).
 ___
-5. Berdasarkan penjelasan diatas, manakah dari pernyataan dibawah ini yang **BENAR** mengenai ARIMA(p,d,q)?
-  - [ ] objek *time series* didiferensing q kali untuk membuat data tersebut stasioner
-  - [ ] p adalah banyaknya *order* yang Anda gunakan untuk menentukan proses dalam pembuatan model *autoregressive*
+5. Berdasarkan penjelasan di atas, manakah dari pernyataan dibawah ini yang **BENAR** mengenai ARIMA(p,d,q)?
+  - [ ] objek *time series* dilakukan *differencing* q kali untuk membuat data menjadi stasioner
+  - [ ] p adalah jumlah *order* yang digunakan untuk menentukan proses pembuatan model *Autoregressive*
   - [ ] d menunjukkan banyaknya waktu dalam 1 frekkuensi
-  - [ ] p menunjukkan berapa banyak data yang dibbutuhkan untuk melakukan *smoothing error* menggunakan *moving average*
+  - [ ] p menunjukkan berapa banyak data yang digunakan untuk melakukan *smoothing error* menggunakan *Moving Average*
+  
+*Referensi Opsi Bahasa Inggris:*
+ - [ ] the time series object is being differenced q times to make it stationary
+ - [ ] p is the number of orders you can use to determine the process of making an Autoregressive model
+ - [ ] d shows the number of time in 1 frequency
+ - [ ] p shows the amount of data for smoothing error using Moving Average
 ___
 
 # *Forecasting*
 
-Pada bagian sebelumnya, kita telah membangun model peramalan menggunakan *Holt-Winters* dan ARIMA. Menggunakan model `model_hw` dan `model_arima`, cobalah untuk meramalkan banyaknya pencurian dalam 365 hari kedepan menggunakan fungsi `forecast()`. Simpanlah hasilnya pada objek `hw_forecast` untuk `model_hw` dan `arima_forecast` untuk `model_arima`.
+Pada bagian sebelumnya, kita telah membangun model peramalan menggunakan *Holt-Winters* dan ARIMA. Menggunakan model `model_hw` dan `model_arima`, cobalah untuk meramalkan banyaknya pencurian dalam 365 hari kedepan menggunakan fungsi `forecast()`. Simpan hasilnya pada objek `hw_forecast` untuk `model_hw` dan `arima_forecast` untuk `model_arima`.
 
-# Evaluasi Model (Eror)
+```{r}
+# your code here
 
-Sekarang kita telah memiliki hasil peramalah dari model *Holt-Winters* dan ARIMA. Untuk mengevaluasi model yang kita miliki, hitunglah nilai MAPE (*mean absolute percentage error*) antara hasil peramalan kita dan pada data `test_theft`. Silahkan hitung setiap nilai MAPE pada kedua model menggunakan fungsi `accuracy()` dari *package* `forecast` dan lihatlah nilai MAPE-nya.
+```
+
+# Evaluasi Model (*Error*)
+
+Sekarang kita telah memiliki hasil peramalah dari model *Holt-Winters* dan ARIMA. Untuk mengevaluasi model, hitunglah nilai MAPE (*mean absolute percentage error*) antara hasil peramalan dan data aktual `test_theft`. Hitung nilai MAPE dari kedua model menggunakan fungsi `accuracy()` dari *package* `forecast`.
 
 ```{r}
 # your code here
@@ -142,25 +173,30 @@ Sekarang kita telah memiliki hasil peramalah dari model *Holt-Winters* dan ARIMA
 ```
 
 ___
-6. Berdasarkan hasil diatas, manakah dari pernyataan berikut yang **BENAR**?
+6. Berdasarkan hasil di atas, manakah dari pernyataan berikut yang **BENAR**?
   - [ ] Nilai *mean absolute percentage error* pada model ARIMA sebesar 11.6%
-  - [ ] Nilai *mean absolute percentage error* pada model *Holt-Winters* sekitar 11.6 kejadian pencurian
-  - Perbedaan nilai *mean absolute percentage error* antara model ARIMA dan *Holt-Winters* sekitar 0.53%
+  - [ ] Nilai *mean absolute percentage error* pada model *Holt-Winters* adalah sekitar 11.6 kejadian pencurian
+  - [ ] Perbedaan nilai *mean absolute percentage error* antara model ARIMA dan *Holt-Winters* adalah 0.53%
+
+*Referensi Opsi Bahasa Inggris:*
+ - [ ] using ARIMA model, the mean absolute percentage error is 11.6%
+ - [ ] using Holt-Winters model, the mean absolute percentage error is around 11.6 theft event
+ - [ ] The difference of mean absolute percentage error between ARIMA and Holt-Winters model is 0.53%
 ___
 
 # Evaluasi Model (Pemeriksaan Asumsi)
 
-Terdapat beberapa asumsi ketika kita menggunakan analisis *time series*. Asumsi ini digunakan unruk membuat model yang telah kita buat dapat dipercaya untuk memprediksi data asli.
+Terdapat beberapa asumsi ketika kita menggunakan analisis *time series*. Asumsi ini digunakan untuk memastikan model yang telah kita buat cukup terpercaya untuk memprediksi data asli.
 
 ___
-7. Untuk memastikan model peramalan kita cukup dipercaya, asumsi apa yang seharusnya kita periksa dalam analisis *time series*?
+7. Asumsi apa yang seharusnya kita periksa dalam analisis *time series*?
  - [ ] *Multicollinearity, No-Autocorrelation*
  - [ ] *No-Autocorrelation, Normality*
  - [ ] *Linearity, No-Autocorrelation*
  - [ ] *Heteroscedasticity, No-Autocorrelation*
 ___
 
-Silahkan periksa asumsi *no-autocorrelation* pada model Anda menggunakan tes *Ljung-Box*.
+Silahkan periksa asumsi *no-autocorrelation* pada model Anda menggunakan uji *Ljung-Box*.
 
 ```{r}
 # your code here
@@ -168,9 +204,16 @@ Silahkan periksa asumsi *no-autocorrelation* pada model Anda menggunakan tes *Lj
 ```
 
 ___
-8. Manakah dari pernyataan dibawah ini yang **BENAR** mengenai asumsi *no-autocorrelation* pada model *time series* kita?
+8. Manakah dari pernyataan berikut yang **BENAR** mengenai asumsi *no-autocorrelation* pada model *time series* kita?
   - [ ] tidak terdapat *autocorrelation* pada *error*, artinya setiap *error* tidak memiliki hubungan
   - [ ] terdapat *autocorrelation* pada *error*, artinya setiap *error* memiliki hubungan
-  - [ ] terdapat *autocorrelation* pada setiap data prediksi, artinya setiap data yang diprediksi memiliki hubungan
-  - [ ] tidak terdapat *autocorrelation* pada setiap data prediksi, artinya setiap data yang diprediksi tidak memiliki hubungan
+  - [ ] terdapat *autocorrelation* pada data hasil prediksi, artinya setiap data yang diprediksi memiliki hubungan
+  - [ ] tidak terdapat *autocorrelation* pada data hasil prediksi, artinya setiap data yang diprediksi tidak memiliki hubungan
+  
+*Referensi Opsi Bahasa Inggris:*
+ - [ ] there is no autocorrelation in error, meaning that each error have no relation
+ - [ ] there is autocorrelation in error, meaning that each error have a relation
+ - [ ] there is autocorrelation in the prediction data, meaning that each predicted data a have relation
+ - [ ] there is no autocorrelation in the prediction data, meaning that each predicted data have no relation
+
 ___
